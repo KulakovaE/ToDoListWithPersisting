@@ -11,8 +11,15 @@ import UIKit
 class ToDoViewController: UITableViewController {
 
     var itemArray = ["Make lunch", "Have a walk", "Learn Core Data"]
+    let defaults = UserDefaults.standard
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let items = defaults.array(forKey: "ToDoListArray") as? [String] {
+            itemArray = items
+        }
         // Do any additional setup after loading the view.
     }
     //MARK: UITableViewDataSours Methods
@@ -52,6 +59,8 @@ class ToDoViewController: UITableViewController {
             //what will happen once the user clicks on UIAlert
             self.itemArray.insert(textField.text ?? "", at: 0)
             //.append if the order is not important for you
+            
+            self.defaults.set(self.itemArray, forKey: "ToDoListArray")
             self.tableView.reloadData()
         }
         alert.addTextField { (alertTextField) in
