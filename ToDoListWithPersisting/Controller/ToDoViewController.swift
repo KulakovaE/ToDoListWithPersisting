@@ -11,18 +11,23 @@ import UIKit
 class ToDoViewController: UITableViewController {
 
     var itemArray = [Item]()
-    let defaults = UserDefaults.standard
+    //let defaults = UserDefaults.standard
+    let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        print(dataFilePath)
+        
+        //creting custom item
         let newItem = Item()
         newItem.title = "Make Lunch"
         itemArray.insert(newItem, at: 0)
         
-        if let items = defaults.array(forKey: "ToDoListArray") as? [Item] {
-            itemArray = items
-        }
+//        if let items = defaults.array(forKey: "ToDoListArray") as? [Item] {
+//            itemArray = items
+//        }
     }
     
     //MARK: UITableViewDataSours Methods
@@ -46,7 +51,8 @@ class ToDoViewController: UITableViewController {
         
         itemArray[indexPath.row].done = !itemArray[indexPath.row].done
         
-        tableView.reloadData()
+        saveItems()
+        
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
@@ -65,9 +71,8 @@ class ToDoViewController: UITableViewController {
             
             self.itemArray.insert(newItem, at: 0)
             
-            self.defaults.set(self.itemArray, forKey: "ToDoListArray")
-        
-            self.tableView.reloadData()
+            //self.defaults.set(self.itemArray, forKey: "ToDoListArray")
+            self.saveItems()
         }
         
         alert.addTextField { (alertTextField) in
@@ -78,4 +83,15 @@ class ToDoViewController: UITableViewController {
         alert.addAction(action)
         present(alert, animated: true, completion: nil)
     }
+    
+    func saveItems() {
+        let encoder = PropertyListEncoder()
+            do {
+                let data = try encoder.encode(itemArray)
+                try data.write(to: dataFilePath!)
+            } catch {
+                print("Error: \(error)")
+            }
+            self.tableView.reloadData()
+        }
 }
