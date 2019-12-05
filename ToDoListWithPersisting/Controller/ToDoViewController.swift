@@ -12,15 +12,14 @@ import CoreData
 class ToDoViewController: UITableViewController {
     
     var itemArray = [Item]()
-    
-    
-    
+    //goes to the AppDelegate and grabs the persistentContainer, UIApplication.shared.delegate as! AppDelegate making object from the class AppDelegate
     let contex = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     override func viewDidLoad() {
         super.viewDidLoad()
         print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
-        //loadItems()
+        
+        loadItems()
     }
     
     //MARK: UITableViewDataSours Methods
@@ -91,15 +90,13 @@ class ToDoViewController: UITableViewController {
         self.tableView.reloadData()
     }
     
-//    func loadItems() {
-//        if let data = try? Data(contentsOf: dataFilePath!) {
-//            let decoder = PropertyListDecoder()
-//            do {
-//                itemArray = try decoder.decode([Item].self, from: data)
-//            } catch {
-//                print("Error \(error)")
-//            }
-//        }
-//    }
+    func loadItems() {
+        let request: NSFetchRequest<Item> = Item.fetchRequest()
+        do {
+            itemArray = try contex.fetch(request)
+        } catch {
+            print("Error fetching data from context \(error)")
+        }
+    }
     
 }
