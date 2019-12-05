@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F34D95E423991D6000D85C15 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34D95E323991D6000D85C15 /* CategoryViewController.swift */; };
 		F3D7D91E23952FA900287D68 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D7D91D23952FA900287D68 /* AppDelegate.swift */; };
 		F3D7D92023952FA900287D68 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D7D91F23952FA900287D68 /* SceneDelegate.swift */; };
 		F3D7D92223952FA900287D68 /* ToDoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D7D92123952FA900287D68 /* ToDoViewController.swift */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F34D95E323991D6000D85C15 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		F3D7D91A23952FA900287D68 /* ToDoListWithPersisting.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoListWithPersisting.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3D7D91D23952FA900287D68 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F3D7D91F23952FA900287D68 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -82,6 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				F3D7D92123952FA900287D68 /* ToDoViewController.swift */,
+				F34D95E323991D6000D85C15 /* CategoryViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -173,6 +176,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F34D95E423991D6000D85C15 /* CategoryViewController.swift in Sources */,
 				F3D7D9392397B8D100287D68 /* DataModel.xcdatamodeld in Sources */,
 				F3D7D92223952FA900287D68 /* ToDoViewController.swift in Sources */,
 				F3D7D91E23952FA900287D68 /* AppDelegate.swift in Sources */,
