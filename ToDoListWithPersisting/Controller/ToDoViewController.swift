@@ -12,14 +12,17 @@ import CoreData
 class ToDoViewController: UITableViewController {
     
     var itemArray = [Item]()
+    var selectedCategory: Category? {
+        didSet{
+            loadItems()
+        }
+    }
     //goes to the AppDelegate and grabs the persistentContainer, UIApplication.shared.delegate as! AppDelegate making object from the class AppDelegate
     let contex = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
-       
-        loadItems()
+    
     }
     
     //MARK: - UITableViewDataSours Methods
@@ -67,7 +70,8 @@ class ToDoViewController: UITableViewController {
             
             newItem.title = textField.text!
             newItem.done = false
-            
+            //the relationship
+            newItem.parentCategory = self.selectedCategory
             self.itemArray.insert(newItem, at: 0)
             
             self.saveItems()
@@ -93,8 +97,17 @@ class ToDoViewController: UITableViewController {
         self.tableView.reloadData()
     }
     
-    func loadItems(with request: NSFetchRequest<Item> = Item.fetchRequest()){
+    func loadItems(with request: NSFetchRequest<Item> = Item.fetchRequest(), predicate: NSPredicate? = nil){
 
+        let categoryPredicate = NSPredicate(format: "parentCategory.name MATCHES %@", selectedCategory!.name!)
+        
+        if let additionalPredicate = predicate {
+            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [categoryPredicate, additionalPredicate])
+        } else {
+            request.predicate = categoryPredicate
+        }
+
+        
         do {
             itemArray = try contex.fetch(request)
         } catch {
@@ -110,11 +123,12 @@ extension ToDoViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         let request: NSFetchRequest<Item> = Item.fetchRequest()
-
-        request.predicate  = NSPredicate(format: "title CONTAINS[cd] %@", searchBar.text!)
+        
+        let predicate = NSPredicate(format: "title CONTAINS[cd] %@", searchBar.text!)
+        
         request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
         
-        loadItems(with: request)
+        loadItems(with: request, predicate: predicate)
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
