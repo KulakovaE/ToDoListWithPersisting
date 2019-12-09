@@ -80,7 +80,9 @@ class ToDoViewController: UITableViewController {
                     try self.realm.write {
                         let newItem = Item()
                         newItem.title = textField.text!
-                        currentCategory.items.insert(newItem, at: 0)
+                        newItem.dateCreated = Date()
+                        currentCategory.items.append(newItem)
+                        
                     }
                 } catch {
                     print("Error saving new items\(error)")
@@ -112,8 +114,9 @@ extension ToDoViewController: UISearchBarDelegate {
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         
-        items = items?.filter("title CONTAINS[cd]%@",searchBar.text!).sorted(byKeyPath: "title", ascending: true)
 
+        items = items?.filter("title CONTAINS[cd] %@",searchBar.text!).sorted(byKeyPath: "dateCreated", ascending: true)
+        tableView.reloadData()
     }
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
