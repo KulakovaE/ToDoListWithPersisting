@@ -1,15 +1,15 @@
 //
-//  Data.swift
+//  Category.swift
 //  ToDoListWithPersisting
 //
-//  Created by Elena Kulakova on 2019-12-06.
+//  Created by Elena Kulakova on 2019-12-09.
 //  Copyright © 2019 Elena Kulakova. All rights reserved.
 //
 
 import Foundation
 import RealmSwift
 
-class Data: Object {
+class Category: Object {
     @objc dynamic var name: String = ""
-    @objc dynamic var age: Int = 0
+    let items = List<Item>()
 }
