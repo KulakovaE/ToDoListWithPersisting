@@ -39,16 +39,26 @@ class ToDoViewController: UITableViewController {
     
     //MARK: - UITableViewDelegate
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    //update data with Realm
+        //delete data with Realm
         if let item = items?[indexPath.row] {
             do {
                 try realm.write {
-                    item.done = !item.done
+                    realm.delete(item)
                 }
             } catch {
                 print("Error saving done status,\(error)")
             }
         }
+//    //update data with Realm
+//        if let item = items?[indexPath.row] {
+//            do {
+//                try realm.write {
+//                    item.done = !item.done
+//                }
+//            } catch {
+//                print("Error saving done status,\(error)")
+//            }
+//        }
         tableView.reloadData()
         tableView.deselectRow(at: indexPath, animated: true)
     }
