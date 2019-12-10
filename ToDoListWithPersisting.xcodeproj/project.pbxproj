@@ -11,6 +11,7 @@
 		F3359A81239E5C70001034F1 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3359A80239E5C70001034F1 /* Item.swift */; };
 		F3359A83239E5C7E001034F1 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3359A82239E5C7E001034F1 /* Category.swift */; };
 		F34D95E423991D6000D85C15 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34D95E323991D6000D85C15 /* CategoryViewController.swift */; };
+		F3C41A27239FA24B002413C4 /* SwipeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C41A26239FA24B002413C4 /* SwipeTableViewController.swift */; };
 		F3D7D91E23952FA900287D68 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D7D91D23952FA900287D68 /* AppDelegate.swift */; };
 		F3D7D92023952FA900287D68 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D7D91F23952FA900287D68 /* SceneDelegate.swift */; };
 		F3D7D92223952FA900287D68 /* ToDoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D7D92123952FA900287D68 /* ToDoViewController.swift */; };
@@ -26,6 +27,7 @@
 		F3359A80239E5C70001034F1 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		F3359A82239E5C7E001034F1 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		F34D95E323991D6000D85C15 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
+		F3C41A26239FA24B002413C4 /* SwipeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeTableViewController.swift; sourceTree = "<group>"; };
 		F3D7D91A23952FA900287D68 /* ToDoListWithPersisting.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoListWithPersisting.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3D7D91D23952FA900287D68 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F3D7D91F23952FA900287D68 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 			children = (
 				F34D95E323991D6000D85C15 /* CategoryViewController.swift */,
 				F3D7D92123952FA900287D68 /* ToDoViewController.swift */,
+				F3C41A26239FA24B002413C4 /* SwipeTableViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -250,6 +253,7 @@
 				F34D95E423991D6000D85C15 /* CategoryViewController.swift in Sources */,
 				F3D7D92223952FA900287D68 /* ToDoViewController.swift in Sources */,
 				F3D7D91E23952FA900287D68 /* AppDelegate.swift in Sources */,
+				F3C41A27239FA24B002413C4 /* SwipeTableViewController.swift in Sources */,
 				F3359A81239E5C70001034F1 /* Item.swift in Sources */,
 				F3D7D92023952FA900287D68 /* SceneDelegate.swift in Sources */,
 				F3359A83239E5C7E001034F1 /* Category.swift in Sources */,
