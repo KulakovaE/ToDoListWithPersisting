@@ -86,7 +86,6 @@
 		F3D7D91C23952FA900287D68 /* ToDoListWithPersisting */ = {
 			isa = PBXGroup;
 			children = (
-				F3D7D91D23952FA900287D68 /* AppDelegate.swift */,
 				F3D7D9342395300300287D68 /* DataModel */,
 				F3D7D93323952FE000287D68 /* View */,
 				F3D7D93223952FD000287D68 /* Controller */,
@@ -99,6 +98,7 @@
 		F3D7D93123952FB500287D68 /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
+				F3D7D91D23952FA900287D68 /* AppDelegate.swift */,
 				F3D7D91F23952FA900287D68 /* SceneDelegate.swift */,
 				F3D7D92623952FAA00287D68 /* Assets.xcassets */,
 				F3D7D92823952FAA00287D68 /* LaunchScreen.storyboard */,
@@ -109,8 +109,8 @@
 		F3D7D93223952FD000287D68 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				F3D7D92123952FA900287D68 /* ToDoViewController.swift */,
 				F34D95E323991D6000D85C15 /* CategoryViewController.swift */,
+				F3D7D92123952FA900287D68 /* ToDoViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";

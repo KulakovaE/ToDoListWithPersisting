@@ -12,6 +12,7 @@ import RealmSwift
 class ToDoViewController: UITableViewController {
     
     let realm = try! Realm()
+    
     var items: Results<Item>?
     
     var selectedCategory: Category? {
@@ -21,6 +22,7 @@ class ToDoViewController: UITableViewController {
     }
     
     //MARK: - UITableViewDataSours Methods
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items?.count ?? 1
     }
@@ -29,29 +31,32 @@ class ToDoViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ToDoItemCell", for: indexPath)
         
         if let item = items?[indexPath.row] {
+            
             cell.textLabel?.text = item.title
             cell.accessoryType = item.done ? .checkmark : .none
         } else {
             cell.textLabel?.text = "No item added"
         }
+        
         return cell
     }
     
     //MARK: - UITableViewDelegate
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        //delete data with Realm
-//        if let item = items?[indexPath.row] {
-//            do {
-//                try realm.write {
-//                    realm.delete(item)
-//                }
-//            } catch {
-//                print("Error saving done status,\(error)")
-//            }
-//        }
+        //        //delete data with Realm
+        //        if let item = items?[indexPath.row] {
+        //            do {
+        //                try realm.write {
+        //                    realm.delete(item)
+        //                }
+        //            } catch {
+        //                print("Error saving done status,\(error)")
+        //            }
+        //        }
         
-    //update data with Realm
+        //update data with Realm
         if let item = items?[indexPath.row] {
+            
             do {
                 try realm.write {
                     item.done = !item.done
@@ -60,6 +65,7 @@ class ToDoViewController: UITableViewController {
                 print("Error saving done status,\(error)")
             }
         }
+        
         tableView.reloadData()
         tableView.deselectRow(at: indexPath, animated: true)
     }
@@ -106,24 +112,22 @@ class ToDoViewController: UITableViewController {
         items = selectedCategory?.items.sorted(byKeyPath: "title", ascending: true)
         tableView.reloadData()
     }
-    
 }
 
 //MARK: - UISearchBarDelegate
 extension ToDoViewController: UISearchBarDelegate {
-
+    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         
-
         items = items?.filter("title CONTAINS[cd] %@",searchBar.text!).sorted(byKeyPath: "dateCreated", ascending: true)
         tableView.reloadData()
     }
-
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchBar.text?.count == 0 {
             loadItems()
             DispatchQueue.main.async {
-                  searchBar.resignFirstResponder()
+                searchBar.resignFirstResponder()
             }
         }
     }
