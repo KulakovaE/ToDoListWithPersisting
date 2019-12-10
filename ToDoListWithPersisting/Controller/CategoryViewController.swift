@@ -36,7 +36,22 @@ class CategoryViewController: SwipeTableViewController {
         return cell
     }
     
-    //MARK: - Data Manipulation Methods
+    //MARK: - TableViewDelegate Methods
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        performSegue(withIdentifier: "CategoryToItems", sender: self)
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destinationVC = segue.destination as? ToDoViewController,
+            let indexPath = tableView.indexPathForSelectedRow {
+            destinationVC.selectedCategory = categories?[indexPath.row]
+        }
+    }
+    
+    
     //MARK: - Save Data
     
     func save(category: Category) {
@@ -61,7 +76,7 @@ class CategoryViewController: SwipeTableViewController {
     //MARK: - Delete Data From Swipe
     
     override func updateModel(at indexPath: IndexPath) {
-       
+        
         if let categoryForDeletion = self.categories?[indexPath.row] {
             do {
                 try self.realm.write {
@@ -70,22 +85,6 @@ class CategoryViewController: SwipeTableViewController {
             } catch {
                 print("Error saving done status,\(error)")
             }
-        }
-    }
-    
-    
-    //MARK: - TableViewDelegate Methods
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        performSegue(withIdentifier: "CategoryToItems", sender: self)
-        tableView.deselectRow(at: indexPath, animated: true)
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let destinationVC = segue.destination as? ToDoViewController,
-            let indexPath = tableView.indexPathForSelectedRow {
-            destinationVC.selectedCategory = categories?[indexPath.row]
         }
     }
     
@@ -115,3 +114,4 @@ class CategoryViewController: SwipeTableViewController {
         present(alert, animated: true, completion: nil)
     }
 }
+
